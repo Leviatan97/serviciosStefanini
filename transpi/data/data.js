@@ -14,41 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Data = void 0;
 const mysql_1 = __importDefault(require("mysql"));
-// creame una clase llamada data
 class Data {
-    // creamos un constructor
     constructor() {
-        // conectamos a la base de datos
         this.connection = this.connect();
     }
-    // creamos un metodo llamado connect
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
-            // creamos una variable llamada connection
             const connection = yield mysql_1.default.createConnection({
                 host: 'localhost',
                 user: 'root',
                 password: '123456789',
                 database: 'pruebaStefanini'
             });
-            // guardamos la conexion en la propiedad connection
             return connection;
         });
     }
-    // creamos un metodo llamado disconnect
     disconnect() {
         return __awaiter(this, void 0, void 0, function* () {
-            // cerramos la conexion
             yield this.connection.end();
         });
     }
-    // creamos un metodo llamado execute
     execute(query, params) {
         return __awaiter(this, void 0, void 0, function* () {
             const con = yield this.connect();
-            // creamos una variable llamada result
             const result = yield con.query(query, params);
-            // retornamos el resultado
             return result;
         });
     }
